@@ -3,7 +3,16 @@ import axios from "axios";
 import { getCookie, setCookie } from "../../shared/cookies.js";
 
 const initialState = {
-  articles: [],
+  articles: [
+    {
+      articlesId: 1,
+      userName: "",
+      image: "",
+      content: "",
+      commentCount: 1,
+      creatAat: "",
+    },
+  ],
   like: [],
   article: {
     comments: [],

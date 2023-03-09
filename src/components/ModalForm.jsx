@@ -17,20 +17,15 @@ const ModalForm = ({ ModalHandler }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [postBtn, setPostBtn] = useState(true);
-  const userName = getCookie('userName')
-  const token = getCookie('token')
-
+  const userName = getCookie("userName");
+  const token = getCookie("token");
 
   const onChangeTextarea = (e) => {
     setContent(e.target.value);
     // console.log(e.target.value);
   };
-
-
-
-
 
   const [files, setFiles] = useState([]);
   //Dropzone
@@ -53,7 +48,6 @@ const ModalForm = ({ ModalHandler }) => {
     },
   });
 
-
   const formdata = new FormData();
 
   //공유하기
@@ -70,7 +64,7 @@ const ModalForm = ({ ModalHandler }) => {
       new Blob([JSON.stringify(newForm)], { type: "application/json" })
     );
     dispatch(__postImage(formdata));
-    
+
     window.location.reload();
   };
 
@@ -113,7 +107,7 @@ const ModalForm = ({ ModalHandler }) => {
                 <GetRootProps {...getRootProps({ className: "dropzone" })}>
                   <input
                     {...getInputProps()}
-                  // type='file'
+                    // type='file'
                   />
                   <StImgUpload>
                     <FormImg />
@@ -142,7 +136,7 @@ const ModalForm = ({ ModalHandler }) => {
                               display: "flex",
                               justifyContent: "center",
                               alignItems: "center",
-                              obectFit: "cover"
+                              objectFit: "cover",
                             }}
                             onLoad={() => {
                               URL.revokeObjectURL(file.preview);
@@ -162,10 +156,8 @@ const ModalForm = ({ ModalHandler }) => {
               <Titlebox>
                 <TitleImg />
                 <Textbox>
-
-                  <Text color='black' fontSize='14px'>
+                  <Text color="black" fontSize="14px">
                     {userName}
-
                   </Text>
                 </Textbox>
               </Titlebox>

@@ -8,29 +8,45 @@ import FormPage from "../pages/FormPage";
 import MyPage from "../pages/MyPage";
 import { getCookie, setCookie } from "./cookies";
 
-import ScrollToTop from './ScrollToTop';
+import ScrollToTop from "./ScrollToTop";
 import { useSelector, useDispatch } from "react-redux";
-import { __getUser } from '../redux/modules/userSlice';
+import { __getUser } from "../redux/modules/userSlice";
 
 const Router = () => {
-
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state) => state.user);
-  const token = getCookie("token")
+  // const token = getCookie("token")
+  const token = true;
 
   // console.log(isLogin)
 
   return (
     <BrowserRouter>
-    <ScrollToTop>
-      <Routes>
-          <Route path="/" element={token ? <MainPage /> : <Navigate to="/login" />}></Route>
-          <Route path="/login" element={token ? <Navigate to="/" /> : <LoginPage />}></Route>
-          <Route path="/register" element={token ? <Navigate to="/" /> : <RegisterPage />}></Route>
-          <Route path="/form" element={token ? <FormPage /> : <Navigate to="/login" />}></Route>
-          <Route path="/mypage" element={token ? <MyPage /> : <Navigate to="/login" />}></Route>
-      </Routes>
-    </ScrollToTop>
+      <ScrollToTop>
+        <Routes>
+          {/* <Route
+            path="/"
+            element={token ? <MainPage /> : <Navigate to="/login" />}
+          ></Route> */}
+          <Route path="/" element={<MainPage />}></Route>
+          <Route
+            path="/login"
+            element={token ? <Navigate to="/" /> : <LoginPage />}
+          ></Route>
+          <Route
+            path="/register"
+            element={token ? <Navigate to="/" /> : <RegisterPage />}
+          ></Route>
+          <Route
+            path="/form"
+            element={token ? <FormPage /> : <Navigate to="/login" />}
+          ></Route>
+          <Route
+            path="/mypage"
+            element={token ? <MyPage /> : <Navigate to="/login" />}
+          ></Route>
+        </Routes>
+      </ScrollToTop>
     </BrowserRouter>
   );
 };

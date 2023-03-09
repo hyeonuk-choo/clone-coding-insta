@@ -1,38 +1,44 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import ModalForm from "./ModalForm";
+
+// -----------------------쿠키------------------------------
+
+import { getCookie, removeCookie } from "../shared/cookies";
+
+// -----------------------아이콘, 이미지------------------------------
+
 import instagramLogo from "../assets/img/instagramLogo.png";
+import Profile from "../assets/img/Profile.jpg";
 import { MdHomeFilled } from "react-icons/md";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import { CgAddR } from "react-icons/cg";
 import { TiCompass } from "react-icons/ti";
 import { BiHeart } from "react-icons/bi";
 import { CgSearch } from "react-icons/cg";
-import { MdOutlineLogout } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import ModalForm from './ModalForm';
-import Profile from '../assets/img/Profile.jpg';
-import { getCookie, removeCookie } from '../shared/cookies';
+import { MdOutlineLogout } from "react-icons/md";
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [isModal, setIsModal] = useState(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
   const ModalHandler = () => {
     setIsModal(!isModal);
   };
   const logoClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const ProfileClick = () => {
-    navigate('/mypage');
+    navigate("/mypage");
   };
 
   const onClickLogoutHandler = () => {
-    removeCookie('token');
-    removeCookie('userName');
-    alert('로그아웃 되었습니다');
-    navigate('/login');
+    removeCookie("token");
+    removeCookie("userName");
+    alert("로그아웃 되었습니다");
+    navigate("/login");
     window.location.reload();
   };
 
@@ -40,7 +46,7 @@ const NavBar = () => {
     <StNav>
       <StNavContainer>
         <StLogo onClick={logoClick}>
-          <img src={instagramLogo} alt='로고' style={{ width: '100px' }} />
+          <img src={instagramLogo} alt="로고" style={{ width: "100px" }} />
         </StLogo>
         <StSearch>
           <StSearchThings>
@@ -51,27 +57,27 @@ const NavBar = () => {
         <Icons>
           <IconMdHomeFilled
             onClick={() => {
-              navigate('/');
+              navigate("/");
             }}
           >
-            <MdHomeFilled size='28' />
+            <MdHomeFilled size="28" />
           </IconMdHomeFilled>
           <IconHiOutlinePaperAirplane>
-            <HiOutlinePaperAirplane size='25' />
+            <HiOutlinePaperAirplane size="25" />
           </IconHiOutlinePaperAirplane>
           <IconCgAddR onClick={ModalHandler}>
-            <CgAddR size='27' />
+            <CgAddR size="27" />
           </IconCgAddR>
           {isModal ? <ModalForm ModalHandler={ModalHandler} /> : null}
 
           <IconTiCompass>
-            <TiCompass size='32' />
+            <TiCompass size="32" />
           </IconTiCompass>
           <IconBiHeart>
-            <BiHeart size='26' />
+            <BiHeart size="26" />
           </IconBiHeart>
           <IconMdOutlineLogout onClick={onClickLogoutHandler}>
-            <MdOutlineLogout size='26' />
+            <MdOutlineLogout size="26" />
           </IconMdOutlineLogout>
           <ProfileImg onClick={ProfileClick} />
         </Icons>
@@ -91,9 +97,9 @@ const StNav = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  position: fixed;
   top: 0;
   width: 100%;
+  position: fixed;
   z-index: 2;
 `;
 

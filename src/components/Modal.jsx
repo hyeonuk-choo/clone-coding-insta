@@ -3,33 +3,22 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Modal = forwardRef((props, ref) => {
+  const deleteHandler = () => {
+    window.confirm("정말 삭제하시겠습니까?");
+    props.onClickDelete(props.item.articlesId);
+  };
 
-  const deleteHandler = () =>{
-    window.confirm('정말 삭제하시겠습니까?')
-    props.onClickDelete(props.item.articlesId)
-  }
+  console.log(props.item);
 
-  console.log(props.item)
-
-  const {articles} = useSelector((state)=> state.myPage)
-  console.log(articles.userName)
+  const { articles } = useSelector((state) => state.myPage);
+  console.log(articles.userName);
 
   return (
     <div>
       <ModalBg>
         <ModalContainer ref={ref}>
-      
-
-          {props.item.userName === articles.userName ? (
-                <>
-                <StButton>수정</StButton>
-            <StButton onClick={deleteHandler}>
-            삭제
-          </StButton>
-          </>
-          ) : null}
-          
-          
+          <StButton>수정</StButton>
+          <StButton onClick={deleteHandler}>삭제</StButton>
           <StButton>신고</StButton>
           <StButton>팔로우취소</StButton>
           <StButton>즐겨찾기에 추가</StButton>
@@ -57,15 +46,16 @@ const ModalBg = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  position: fixed;
+  position: absolute;
   left: 35%;
-  top: 20%;
+  top: 25%;
   width: 30%;
   height: 50%;
   border-radius: 30px;
   background-color: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 
   /* background-image: url(${(props) => props.item});
   background-repeat: no-repeat;
@@ -75,12 +65,13 @@ const ModalContainer = styled.div`
 
 const StButton = styled.button`
   width: 100%;
-  height: 60px;
+  height: calc(100% / 8);
   background-color: transparent;
   border-top: 0;
   border-left: 0;
   border-right: 0;
   border-bottom: 1px solid lightgray;
+  font-size: 2.2vh;
   &:hover {
     color: #ff3300;
     font-weight: bold;
@@ -89,9 +80,10 @@ const StButton = styled.button`
 
 const StCancelButton = styled.button`
   width: 100%;
-  height: 60px;
+  height: calc(100% / 8);
   background-color: transparent;
   border: none;
+  font-size: 2.2vh;
   &:hover {
     color: #ff3300;
     font-weight: bold;

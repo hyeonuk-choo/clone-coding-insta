@@ -55,12 +55,6 @@ const ModalContainer = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-
-  /* background-image: url(${(props) => props.item});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; */
 `;
 
 const StButton = styled.button`
